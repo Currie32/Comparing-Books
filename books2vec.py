@@ -121,7 +121,7 @@ seed = 2
 
 # Note: Using a lower min_word_count could make our work below more accurate, however, TSNE crashes my jupyter notebook when I increase the size of all_word_vectors_matrix (below).
 
-# In[398]:
+# In[435]:
 
 books2vec = w2v.Word2Vec(
     sg=1, #skip-gram
@@ -134,7 +134,7 @@ books2vec = w2v.Word2Vec(
 )
 
 
-# In[399]:
+# In[436]:
 
 # Build the vocabulary
 books2vec.build_vocab(sentences)
@@ -174,8 +174,8 @@ all_word_vectors_matrix_2d = tsne.fit_transform(all_word_vectors_matrix)
 points = pd.DataFrame(
     [(word, coords[0], coords[1])
         for word, coords in [
-            (word, all_word_vectors_matrix_2d[thrones2vec.vocab[word].index])
-            for word in thrones2vec.vocab
+            (word, all_word_vectors_matrix_2d[books2vec.vocab[word].index])
+            for word in books2vec.vocab
         ]],
     columns=["word", "x", "y"])
 
